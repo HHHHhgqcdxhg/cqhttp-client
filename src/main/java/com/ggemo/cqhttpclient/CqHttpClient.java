@@ -2,9 +2,7 @@ package com.ggemo.cqhttpclient;
 
 import com.ggemo.cqhttpclient.apis.apis.SendGroupMsgApi;
 import com.ggemo.cqhttpclient.requests.HttpPostRequests;
-import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
 import com.ggemo.cqhttpclient.vo.response.response.SendGroupMsgResponse;
-import com.ggemo.cqhttpclient.vo.response.responsedata.SendGroupMsgResponseData;
 import org.apache.http.Header;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.message.BasicHeader;
