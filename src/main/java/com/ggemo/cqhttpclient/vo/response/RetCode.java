@@ -1,8 +1,8 @@
 package com.ggemo.cqhttpclient.vo.response;
 
-import com.ggemo.cqhttpclient.exceptions.CqHttpException;
+import com.ggemo.cqhttpclient.exceptions.BaseCqHttpException;
 import com.ggemo.cqhttpclient.exceptions.CqException;
-import com.ggemo.cqhttpclient.exceptions.CqHttpServerException;
+import com.ggemo.cqhttpclient.exceptions.CqHttpException;
 import lombok.Getter;
 
 @Getter
@@ -10,7 +10,7 @@ public enum RetCode {
     /**
      * 返回的状态码
      */
-    RET_CODE_0(0,"操作成功"),
+    RET_CODE_0(0, "操作成功"),
     RET_CODE_1(1, "操作已进入异步执行"),
     RET_CODE_100(100, "参数缺失或参数无效"),
     RET_CODE_102(102, ""),
@@ -29,17 +29,50 @@ public enum RetCode {
 
     int retCode;
     String description;
-    CqHttpException exception;
+    BaseCqHttpException exception;
 
     RetCode(int retCode, String description) {
         this.retCode = retCode;
         this.description = description;
-        if(retCode > 0){
+        if (retCode > 0) {
             this.description += " 详见https://github.com/richardchien/coolq-http-api/blob/master/docs/4.9/API.md#响应说明";
-            this.exception = new CqHttpServerException(this);
-        }else if(retCode < 0){
+            this.exception = new CqHttpException(this);
+        } else if (retCode < 0) {
             this.description += "详见https://docs.cqp.im/dev/v9/errorcode/";
             this.exception = new CqException(this);
+        }
+    }
+
+    public static RetCode getFromRetCode(int r) {
+        switch (r) {
+            case 0:
+                return RET_CODE_0;
+            case 1:
+                return RET_CODE_1;
+            case 100:
+                return RET_CODE_100;
+            case 102:
+                return RET_CODE_102;
+            case 103:
+                return RET_CODE_103;
+            case 104:
+                return RET_CODE_104;
+            case 201:
+                return RET_CODE_201;
+            case -5:
+                return RET_CODE_cq_5;
+            case -6:
+                return RET_CODE_cq_6;
+            case -7:
+                return RET_CODE_cq_7;
+            case -997:
+                return RET_CODE_cq_997;
+            case -998:
+                return RET_CODE_cq_998;
+            case -1000:
+                return RET_CODE_cq_1000;
+            default:
+                return RET_CODE_cq_1000;
         }
     }
 }

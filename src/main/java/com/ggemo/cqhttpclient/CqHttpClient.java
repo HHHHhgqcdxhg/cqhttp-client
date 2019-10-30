@@ -1,16 +1,14 @@
 package com.ggemo.cqhttpclient;
 
 import com.ggemo.cqhttpclient.apis.apis.SendGroupMsgApi;
-import com.ggemo.cqhttpclient.requests.BaseRequests;
 import com.ggemo.cqhttpclient.requests.HttpPostRequests;
-import com.ggemo.cqhttpclient.vo.request.Request;
-import com.ggemo.cqhttpclient.vo.response.Response;
-import com.ggemo.cqhttpclient.vo.response.responsedata.SendGroupMsgResponse;
+import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
+import com.ggemo.cqhttpclient.vo.response.response.SendGroupMsgResponse;
+import com.ggemo.cqhttpclient.vo.response.responsedata.SendGroupMsgResponseData;
 import org.apache.http.Header;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.message.BasicHeader;
 
-import javax.sound.sampled.Port;
 import java.io.IOException;
 
 public class CqHttpClient {
@@ -69,7 +67,7 @@ public class CqHttpClient {
         this.sendGroupMsgApi = new SendGroupMsgApi(this.baseUrl, this.accessTokenHeader, this.requestConfig);
     }
 
-    private Response<SendGroupMsgResponse> sendGroupMsg(int groupId, String msg, boolean autoEscape) throws IOException {
+    public SendGroupMsgResponse sendGroupMsg(int groupId, String msg, boolean autoEscape) throws IOException {
         return this.sendGroupMsgApi.request(this.requests, groupId, msg, autoEscape);
     }
 }

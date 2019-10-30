@@ -1,6 +1,5 @@
-package com.ggemo.cqhttpclient.vo.request.requestData;
+package com.ggemo.cqhttpclient.vo.request.requestdata;
 
-import com.ggemo.cqhttpclient.apis.ApiEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +16,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 public class SendGroupMsgRequest implements Request {
+    private final static String GROUP_ID = "group_id";
+    private final static String MESSAGE = "message";
+    private final static String AUTO_ESCAPE = "auto_escape";
+
     int groupId;
     String message;
     boolean autoEscape;
@@ -24,9 +27,9 @@ public class SendGroupMsgRequest implements Request {
     @Override
     public UrlEncodedFormEntity getEntity() throws UnsupportedEncodingException {
         List<NameValuePair> kvs = new ArrayList<>(3);
-        kvs.add(new BasicNameValuePair("group_id", Integer.toString(groupId)));
-        kvs.add(new BasicNameValuePair("message", message));
-        kvs.add(new BasicNameValuePair("auto_escape", Boolean.toString(autoEscape)));
+        kvs.add(new BasicNameValuePair(GROUP_ID, Integer.toString(groupId)));
+        kvs.add(new BasicNameValuePair(MESSAGE, message));
+        kvs.add(new BasicNameValuePair(AUTO_ESCAPE, Boolean.toString(autoEscape)));
         UrlEncodedFormEntity entity = new UrlEncodedFormEntity(kvs, "utf-8");
         return entity;
     }
