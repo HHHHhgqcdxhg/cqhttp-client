@@ -1,4 +1,4 @@
-package com.ggemo.cqhttpclient.utils;
+package com.ggemo.cqhttpclient.common.utils;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
