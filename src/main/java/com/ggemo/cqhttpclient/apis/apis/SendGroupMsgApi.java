@@ -34,7 +34,7 @@ public class SendGroupMsgApi extends AbstractApi<SendGroupMsgRequest, AbstractRe
             String responseString = EntityUtils.toString(responseEntity);
             SendGroupMsgResponse res = SendGroupMsgResponse.parse(responseString);
             return res;
-        }finally {
+        } finally {
             this.httpPostThreadLocal.remove();
         }
 

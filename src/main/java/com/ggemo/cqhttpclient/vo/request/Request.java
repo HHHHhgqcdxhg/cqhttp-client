@@ -10,6 +10,7 @@ import java.io.UnsupportedEncodingException;
 public interface Request {
     /**
      * 返回Request实例对应的Entity
+     *
      * @return
      */
     public UrlEncodedFormEntity getEntity() throws UnsupportedEncodingException;

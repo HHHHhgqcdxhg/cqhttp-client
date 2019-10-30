@@ -12,6 +12,7 @@ import java.io.IOException;
 public interface Api<Req extends Request, Res extends AbstractResponse> {
     /**
      * 通过Request对象请求api
+     *
      * @param request
      * @return
      */

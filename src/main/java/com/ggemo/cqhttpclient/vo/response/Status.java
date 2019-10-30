@@ -16,11 +16,11 @@ public enum Status {
     String status;
 
     public static Status getStatus(RetCode retCode) {
-        if(retCode.getRetCode() == 0){
+        if (retCode.getRetCode() == 0) {
             return OK;
-        }else if(retCode.getRetCode() == 1){
+        } else if (retCode.getRetCode() == 1) {
             return ASYNC;
-        }else{
+        } else {
             return FAILED;
         }
     }

@@ -1,7 +1,8 @@
 package com.ggemo.cqhttpclient.vo.response;
 
-public class AsyncResponseData implements ResponseData{
+public class AsyncResponseData implements ResponseData {
     private static final AsyncResponseData INSTANCE = new AsyncResponseData();
+
     private AsyncResponseData() {
     }
 

@@ -34,7 +34,7 @@ public class CqHttpClient {
     }
 
     public CqHttpClient(String host, int port, String accessToken) {
-        this(host,port);
+        this(host, port);
         this.setAccessToken(accessToken);
     }
 
@@ -51,19 +51,19 @@ public class CqHttpClient {
         this.setAccessToken(accessToken);
     }
 
-    private void setAccessToken(String accessToken){
+    private void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
         this.setAccessTokenHeader();
     }
 
     private void setAccessTokenHeader() {
-        if(this.accessToken == null){
+        if (this.accessToken == null) {
             return;
         }
         this.accessTokenHeader = new BasicHeader("Authorization", "Token " + this.accessToken);
     }
 
-    private void initApis(){
+    private void initApis() {
         this.sendGroupMsgApi = new SendGroupMsgApi(this.baseUrl, this.accessTokenHeader, this.requestConfig);
     }
 

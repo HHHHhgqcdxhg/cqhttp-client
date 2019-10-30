@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public abstract class AbstractResponse<T extends  ResponseData> {
+public abstract class AbstractResponse<T extends ResponseData> {
     private RetCode retCode;
 
     private Status status;
@@ -23,18 +23,17 @@ public abstract class AbstractResponse<T extends  ResponseData> {
     }
 
     public T getData() throws BaseCqHttpException {
-        if(this.retCode == RetCode.RET_CODE_0){
+        if (this.retCode == RetCode.RET_CODE_0) {
             return data;
-        }else if(this.retCode == RetCode.RET_CODE_1){
+        } else if (this.retCode == RetCode.RET_CODE_1) {
             return data;
-        }
-        else{
+        } else {
             throw retCode.getException();
         }
     }
 
     @JSONField(name = "retcode")
-    public  void setRetCode(int r){
+    public void setRetCode(int r) {
         this.retCode = RetCode.getFromRetCode(r);
         this.status = Status.getStatus(this.retCode);
     }
@@ -48,7 +47,9 @@ public abstract class AbstractResponse<T extends  ResponseData> {
                 '}';
     }
 
-    public static <D extends ResponseData> AbstractResponse<D> parse(String json){
+    public static <D extends ResponseData> AbstractResponse<D> parse(String json) {
         throw new UnsupportedOperationException();
-    };
+    }
+
+    ;
 }

@@ -10,11 +10,11 @@ public class SendGroupMsgResponse extends AbstractResponse<SendGroupMsgResponseD
         super(retCode, data);
     }
 
-    public SendGroupMsgResponse(){
+    public SendGroupMsgResponse() {
         super();
     }
 
-    public static SendGroupMsgResponse parse(String json){
+    public static SendGroupMsgResponse parse(String json) {
         SendGroupMsgResponse res = JSON.parseObject(json, SendGroupMsgResponse.class);
         return res;
     }

@@ -4,9 +4,10 @@ import com.ggemo.cqhttpclient.vo.response.RetCode;
 
 /**
  * 本框架的Exception
+ *
  * @author 清纯的小黄瓜
  */
-public abstract class BaseCqHttpException extends Exception{
+public abstract class BaseCqHttpException extends Exception {
     BaseCqHttpException(RetCode retCode) {
         super(retCode.getDescription());
     }
