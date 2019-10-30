@@ -37,7 +37,6 @@ public class SendGroupMsgApi extends AbstractApi<SendGroupMsgRequest, AbstractRe
         } finally {
             this.httpPostThreadLocal.remove();
         }
-
     }
 
     public SendGroupMsgResponse request(HttpPostRequests requests, int groupId, String msg, boolean autoEscape) throws IOException {
