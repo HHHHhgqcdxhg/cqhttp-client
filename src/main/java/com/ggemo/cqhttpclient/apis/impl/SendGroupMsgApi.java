@@ -1,4 +1,4 @@
-package com.ggemo.cqhttpclient.apis.apis;
+package com.ggemo.cqhttpclient.apis.impl;
 
 import com.ggemo.cqhttpclient.apis.AbstractApi;
 import com.ggemo.cqhttpclient.apis.Api;
