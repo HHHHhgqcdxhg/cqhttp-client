@@ -6,7 +6,7 @@ public enum ApiEnum {
     /**
      * 发送群消息
      */
-    SEND_GROUP_MSG("/send_group_msg", "发送群消息");
+    SEND_GROUP_MSG("send_group_msg", "发送群消息");
 
     private String route;
     private String description;
