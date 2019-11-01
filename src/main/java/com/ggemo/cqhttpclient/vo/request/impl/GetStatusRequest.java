@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 
 public class GetStatusRequest implements Request {
     @Override
-    public UrlEncodedFormEntity getEntity() throws UnsupportedEncodingException {
+    public UrlEncodedFormEntity getEntity() {
         return null;
     }
 }
