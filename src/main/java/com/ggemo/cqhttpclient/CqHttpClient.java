@@ -1,8 +1,10 @@
 package com.ggemo.cqhttpclient;
 
+import com.ggemo.cqhttpclient.apis.impl.GetStatusApi;
 import com.ggemo.cqhttpclient.apis.impl.SendGroupMsgApi;
 import com.ggemo.cqhttpclient.requests.HttpPostRequests;
-import com.ggemo.cqhttpclient.vo.response.response.SendGroupMsgResponse;
+import com.ggemo.cqhttpclient.vo.response.impl.GetStatusResponse;
+import com.ggemo.cqhttpclient.vo.response.impl.SendGroupMsgResponse;
 import net.jcip.annotations.ThreadSafe;
 import org.apache.http.Header;
 import org.apache.http.client.config.RequestConfig;
@@ -20,9 +22,8 @@ public class CqHttpClient {
     private Header accessTokenHeader = null;
     private RequestConfig requestConfig = null;
 
-//    private String baseUrl;
-
     private SendGroupMsgApi sendGroupMsgApi = null;
+    private GetStatusApi getStatusApi = null;
 
     public CqHttpClient(String baseUrl) {
         if(baseUrl.charAt(baseUrl.length() - 1) != '/'){
@@ -73,11 +74,26 @@ public class CqHttpClient {
         return this.sendGroupMsgApi;
     }
 
+    private GetStatusApi getGetStatusApi(){
+        if(this.getStatusApi == null){
+            synchronized (SendGroupMsgApi.class){
+                if (this.getStatusApi == null) {
+                    this.getStatusApi = new GetStatusApi(this.baseUrl, this.accessTokenHeader, this.requestConfig);
+                }
+            }
+        }
+        return this.getStatusApi;
+    }
+
     public SendGroupMsgResponse sendGroupMsg(int groupId, String msg, boolean autoEscape) throws IOException {
         return this.getSendGroupMsgApi().request(this.requests, groupId, msg, autoEscape);
     }
 
     public SendGroupMsgResponse sendGroupMsg(int groupId, String msg) throws IOException {
         return this.getSendGroupMsgApi().request(this.requests, groupId, msg, false);
+    }
+
+    public GetStatusResponse getStatus() throws IOException {
+        return this.getGetStatusApi().request(this.requests);
     }
 }
