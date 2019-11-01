@@ -47,7 +47,7 @@ public abstract class AbstractResponse<T extends ResponseData> {
                 '}';
     }
 
-    public static <D extends ResponseData> AbstractResponse<D> parse(String json) {
+    public static AbstractResponse parse(String json) {
         throw new UnsupportedOperationException();
     }
 
