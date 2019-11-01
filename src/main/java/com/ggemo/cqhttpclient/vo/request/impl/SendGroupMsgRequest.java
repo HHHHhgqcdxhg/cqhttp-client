@@ -1,8 +1,7 @@
-package com.ggemo.cqhttpclient.vo.request.requestdata;
+package com.ggemo.cqhttpclient.vo.request.impl;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import com.ggemo.cqhttpclient.vo.request.Request;
@@ -15,8 +14,7 @@ import java.util.List;
 /**
  * @author 清纯的小黄瓜
  */
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 public class SendGroupMsgRequest implements Request {
     private final static String GROUP_ID = "group_id";

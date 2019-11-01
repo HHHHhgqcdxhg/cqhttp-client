@@ -1,4 +1,4 @@
-package com.ggemo.cqhttpclient.vo.response.response;
+package com.ggemo.cqhttpclient.vo.response.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
