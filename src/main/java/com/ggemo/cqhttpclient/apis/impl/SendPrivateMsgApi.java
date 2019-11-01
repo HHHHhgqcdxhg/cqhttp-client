@@ -4,10 +4,10 @@ import com.ggemo.cqhttpclient.apis.AbstractApi;
 import com.ggemo.cqhttpclient.apis.Api;
 import com.ggemo.cqhttpclient.apis.ApiEnum;
 import com.ggemo.cqhttpclient.requests.HttpPostRequests;
-import com.ggemo.cqhttpclient.vo.request.impl.GetStatusRequest;
+import com.ggemo.cqhttpclient.vo.request.impl.SendPrivateMsgRequest;
 import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
-import com.ggemo.cqhttpclient.vo.response.impl.GetStatusResponse;
-import com.ggemo.cqhttpclient.vo.response.responsedata.GetStatusResponseData;
+import com.ggemo.cqhttpclient.vo.response.impl.SendPrivateMsgResponse;
+import com.ggemo.cqhttpclient.vo.response.responsedata.SendPrivateMsgResponseData;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -18,13 +18,14 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
-public class GetStatusApi extends AbstractApi<GetStatusRequest, AbstractResponse<GetStatusResponseData>> implements Api<GetStatusRequest, AbstractResponse<GetStatusResponseData>> {
-    public GetStatusApi(String baseUrl, Header header, RequestConfig requestConfig) {
-        super(baseUrl, ApiEnum.GET_STATUS, header, requestConfig);
+public class SendPrivateMsgApi extends AbstractApi<SendPrivateMsgRequest, AbstractResponse<SendPrivateMsgResponseData>> implements Api<SendPrivateMsgRequest, AbstractResponse<SendPrivateMsgResponseData>> {
+
+    public SendPrivateMsgApi(String baseUrl, Header header, RequestConfig requestConfig) {
+        super(baseUrl, ApiEnum.SEND_PRIVATE_MSG, header, requestConfig);
     }
 
     @Override
-    public GetStatusResponse request(HttpPostRequests requests, GetStatusRequest request) throws IOException {
+    public SendPrivateMsgResponse request(HttpPostRequests requests, SendPrivateMsgRequest request) throws IOException {
         this.httpPostThreadLocal.set(this.httpPost);
         HttpPost httpPost = this.httpPostThreadLocal.get();
         try {
@@ -35,14 +36,15 @@ public class GetStatusApi extends AbstractApi<GetStatusRequest, AbstractResponse
             HttpResponse httpResponse = requests.request(httpPost);
             HttpEntity responseEntity = httpResponse.getEntity();
             String responseString = EntityUtils.toString(responseEntity);
-            GetStatusResponse res = GetStatusResponse.parse(responseString);
+            SendPrivateMsgResponse res = SendPrivateMsgResponse.parse(responseString);
             return res;
         } finally {
             this.httpPostThreadLocal.remove();
         }
     }
 
-    public GetStatusResponse request(HttpPostRequests requests) throws IOException {
-        return this.request(requests, new GetStatusRequest());
+    public SendPrivateMsgResponse request(HttpPostRequests requests,long userId,String message,boolean autoEscape) throws IOException {
+        SendPrivateMsgRequest request = new SendPrivateMsgRequest(userId, message, autoEscape);
+        return request(requests, request);
     }
 }
