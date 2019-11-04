@@ -4,10 +4,10 @@ import com.ggemo.cqhttpclient.apis.AbstractApi;
 import com.ggemo.cqhttpclient.apis.Api;
 import com.ggemo.cqhttpclient.apis.ApiEnum;
 import com.ggemo.cqhttpclient.requests.HttpPostRequests;
-import com.ggemo.cqhttpclient.vo.request.impl.GetStatusRequest;
+import com.ggemo.cqhttpclient.vo.request.impl.SetGroupSpecialTitleRequest;
 import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
-import com.ggemo.cqhttpclient.vo.response.impl.GetStatusResponse;
-import com.ggemo.cqhttpclient.vo.response.responsedata.GetStatusResponseData;
+import com.ggemo.cqhttpclient.vo.response.impl.SetGroupSpecialTitleResponse;
+import com.ggemo.cqhttpclient.vo.response.responsedata.SetGroupSpecialTitleResponseData;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -18,13 +18,14 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
-public class GetStatusApi extends AbstractApi<GetStatusRequest, AbstractResponse<GetStatusResponseData>> implements Api<GetStatusRequest, AbstractResponse<GetStatusResponseData>> {
-    public GetStatusApi(String baseUrl, Header header, RequestConfig requestConfig) {
-        super(baseUrl, ApiEnum.GET_STATUS, header, requestConfig);
+public class SetGroupSpecialTitleApi extends AbstractApi<SetGroupSpecialTitleRequest, AbstractResponse<SetGroupSpecialTitleResponseData>> implements Api<SetGroupSpecialTitleRequest, AbstractResponse<SetGroupSpecialTitleResponseData>> {
+
+    public SetGroupSpecialTitleApi(String baseUrl, Header header, RequestConfig requestConfig) {
+        super(baseUrl, ApiEnum.SET_GROUP_SPECIAL_TITLE, header, requestConfig);
     }
 
     @Override
-    public GetStatusResponse request(HttpPostRequests requests, GetStatusRequest request) throws IOException {
+    public SetGroupSpecialTitleResponse request(HttpPostRequests requests, SetGroupSpecialTitleRequest request) throws IOException {
         this.httpPostThreadLocal.set(this.httpPost);
         HttpPost httpPost = this.httpPostThreadLocal.get();
         try {
@@ -35,14 +36,15 @@ public class GetStatusApi extends AbstractApi<GetStatusRequest, AbstractResponse
             HttpResponse httpResponse = requests.request(httpPost);
             HttpEntity responseEntity = httpResponse.getEntity();
             String responseString = EntityUtils.toString(responseEntity);
-            GetStatusResponse res = GetStatusResponse.parse(responseString);
+            SetGroupSpecialTitleResponse res = SetGroupSpecialTitleResponse.parse(responseString);
             return res;
         } finally {
             this.httpPostThreadLocal.remove();
         }
     }
 
-    public GetStatusResponse request(HttpPostRequests requests) throws IOException {
-        return this.request(requests, new GetStatusRequest());
+    public SetGroupSpecialTitleResponse request(HttpPostRequests requests,int groupId,int userId,String specialTitle,int duration) throws IOException {
+        SetGroupSpecialTitleRequest request = new SetGroupSpecialTitleRequest(groupId, userId, specialTitle, duration);
+        return request(requests, request);
     }
 }

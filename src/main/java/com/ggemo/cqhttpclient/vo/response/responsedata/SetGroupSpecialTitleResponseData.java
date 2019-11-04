@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class SendGroupMsgResponseData implements ResponseData {
-        int messageId;
-
+public class SetGroupSpecialTitleResponseData implements ResponseData {
+    
 }

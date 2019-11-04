@@ -6,7 +6,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class GetStatusResponseData implements ResponseData {
-    boolean online;
-    boolean good;
+public class GetGroupListResponseData implements ResponseData {
+        long groupId;
+    String groupName;
+
 }

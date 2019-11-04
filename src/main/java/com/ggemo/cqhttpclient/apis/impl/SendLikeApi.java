@@ -4,10 +4,10 @@ import com.ggemo.cqhttpclient.apis.AbstractApi;
 import com.ggemo.cqhttpclient.apis.Api;
 import com.ggemo.cqhttpclient.apis.ApiEnum;
 import com.ggemo.cqhttpclient.requests.HttpPostRequests;
-import com.ggemo.cqhttpclient.vo.request.impl.SendGroupMsgRequest;
+import com.ggemo.cqhttpclient.vo.request.impl.SendLikeRequest;
 import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
-import com.ggemo.cqhttpclient.vo.response.impl.SendGroupMsgResponse;
-import com.ggemo.cqhttpclient.vo.response.responsedata.SendGroupMsgResponseData;
+import com.ggemo.cqhttpclient.vo.response.impl.SendLikeResponse;
+import com.ggemo.cqhttpclient.vo.response.responsedata.SendLikeResponseData;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -18,14 +18,14 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
-public class SendGroupMsgApi extends AbstractApi<SendGroupMsgRequest, AbstractResponse<SendGroupMsgResponseData>> implements Api<SendGroupMsgRequest, AbstractResponse<SendGroupMsgResponseData>> {
+public class SendLikeApi extends AbstractApi<SendLikeRequest, AbstractResponse<SendLikeResponseData>> implements Api<SendLikeRequest, AbstractResponse<SendLikeResponseData>> {
 
-    public SendGroupMsgApi(String baseUrl, Header header, RequestConfig requestConfig) {
-        super(baseUrl, ApiEnum.SEND_GROUP_MSG, header, requestConfig);
+    public SendLikeApi(String baseUrl, Header header, RequestConfig requestConfig) {
+        super(baseUrl, ApiEnum.SEND_LIKE, header, requestConfig);
     }
 
     @Override
-    public SendGroupMsgResponse request(HttpPostRequests requests, SendGroupMsgRequest request) throws IOException {
+    public SendLikeResponse request(HttpPostRequests requests, SendLikeRequest request) throws IOException {
         this.httpPostThreadLocal.set(this.httpPost);
         HttpPost httpPost = this.httpPostThreadLocal.get();
         try {
@@ -36,15 +36,15 @@ public class SendGroupMsgApi extends AbstractApi<SendGroupMsgRequest, AbstractRe
             HttpResponse httpResponse = requests.request(httpPost);
             HttpEntity responseEntity = httpResponse.getEntity();
             String responseString = EntityUtils.toString(responseEntity);
-            SendGroupMsgResponse res = SendGroupMsgResponse.parse(responseString);
+            SendLikeResponse res = SendLikeResponse.parse(responseString);
             return res;
         } finally {
             this.httpPostThreadLocal.remove();
         }
     }
 
-    public SendGroupMsgResponse request(HttpPostRequests requests,int groupId,String message,boolean autoEscape) throws IOException {
-        SendGroupMsgRequest request = new SendGroupMsgRequest(groupId, message, autoEscape);
+    public SendLikeResponse request(HttpPostRequests requests,int userId,int times) throws IOException {
+        SendLikeRequest request = new SendLikeRequest(userId, times);
         return request(requests, request);
     }
 }

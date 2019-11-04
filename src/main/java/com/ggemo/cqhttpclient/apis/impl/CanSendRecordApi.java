@@ -4,10 +4,10 @@ import com.ggemo.cqhttpclient.apis.AbstractApi;
 import com.ggemo.cqhttpclient.apis.Api;
 import com.ggemo.cqhttpclient.apis.ApiEnum;
 import com.ggemo.cqhttpclient.requests.HttpPostRequests;
-import com.ggemo.cqhttpclient.vo.request.impl.SendGroupMsgRequest;
+import com.ggemo.cqhttpclient.vo.request.impl.CanSendRecordRequest;
 import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
-import com.ggemo.cqhttpclient.vo.response.impl.SendGroupMsgResponse;
-import com.ggemo.cqhttpclient.vo.response.responsedata.SendGroupMsgResponseData;
+import com.ggemo.cqhttpclient.vo.response.impl.CanSendRecordResponse;
+import com.ggemo.cqhttpclient.vo.response.responsedata.CanSendRecordResponseData;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -18,14 +18,14 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
-public class SendGroupMsgApi extends AbstractApi<SendGroupMsgRequest, AbstractResponse<SendGroupMsgResponseData>> implements Api<SendGroupMsgRequest, AbstractResponse<SendGroupMsgResponseData>> {
+public class CanSendRecordApi extends AbstractApi<CanSendRecordRequest, AbstractResponse<CanSendRecordResponseData>> implements Api<CanSendRecordRequest, AbstractResponse<CanSendRecordResponseData>> {
 
-    public SendGroupMsgApi(String baseUrl, Header header, RequestConfig requestConfig) {
-        super(baseUrl, ApiEnum.SEND_GROUP_MSG, header, requestConfig);
+    public CanSendRecordApi(String baseUrl, Header header, RequestConfig requestConfig) {
+        super(baseUrl, ApiEnum.CAN_SEND_RECORD, header, requestConfig);
     }
 
     @Override
-    public SendGroupMsgResponse request(HttpPostRequests requests, SendGroupMsgRequest request) throws IOException {
+    public CanSendRecordResponse request(HttpPostRequests requests, CanSendRecordRequest request) throws IOException {
         this.httpPostThreadLocal.set(this.httpPost);
         HttpPost httpPost = this.httpPostThreadLocal.get();
         try {
@@ -36,15 +36,15 @@ public class SendGroupMsgApi extends AbstractApi<SendGroupMsgRequest, AbstractRe
             HttpResponse httpResponse = requests.request(httpPost);
             HttpEntity responseEntity = httpResponse.getEntity();
             String responseString = EntityUtils.toString(responseEntity);
-            SendGroupMsgResponse res = SendGroupMsgResponse.parse(responseString);
+            CanSendRecordResponse res = CanSendRecordResponse.parse(responseString);
             return res;
         } finally {
             this.httpPostThreadLocal.remove();
         }
     }
 
-    public SendGroupMsgResponse request(HttpPostRequests requests,int groupId,String message,boolean autoEscape) throws IOException {
-        SendGroupMsgRequest request = new SendGroupMsgRequest(groupId, message, autoEscape);
+    public CanSendRecordResponse request(HttpPostRequests requests) throws IOException {
+        CanSendRecordRequest request = new CanSendRecordRequest();
         return request(requests, request);
     }
 }

@@ -4,10 +4,10 @@ import com.ggemo.cqhttpclient.apis.AbstractApi;
 import com.ggemo.cqhttpclient.apis.Api;
 import com.ggemo.cqhttpclient.apis.ApiEnum;
 import com.ggemo.cqhttpclient.requests.HttpPostRequests;
-import com.ggemo.cqhttpclient.vo.request.impl.SendGroupMsgRequest;
+import com.ggemo.cqhttpclient.vo.request.impl.SetRestartPluginRequest;
 import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
-import com.ggemo.cqhttpclient.vo.response.impl.SendGroupMsgResponse;
-import com.ggemo.cqhttpclient.vo.response.responsedata.SendGroupMsgResponseData;
+import com.ggemo.cqhttpclient.vo.response.impl.SetRestartPluginResponse;
+import com.ggemo.cqhttpclient.vo.response.responsedata.SetRestartPluginResponseData;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -18,14 +18,14 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
-public class SendGroupMsgApi extends AbstractApi<SendGroupMsgRequest, AbstractResponse<SendGroupMsgResponseData>> implements Api<SendGroupMsgRequest, AbstractResponse<SendGroupMsgResponseData>> {
+public class SetRestartPluginApi extends AbstractApi<SetRestartPluginRequest, AbstractResponse<SetRestartPluginResponseData>> implements Api<SetRestartPluginRequest, AbstractResponse<SetRestartPluginResponseData>> {
 
-    public SendGroupMsgApi(String baseUrl, Header header, RequestConfig requestConfig) {
-        super(baseUrl, ApiEnum.SEND_GROUP_MSG, header, requestConfig);
+    public SetRestartPluginApi(String baseUrl, Header header, RequestConfig requestConfig) {
+        super(baseUrl, ApiEnum.SET_RESTART_PLUGIN, header, requestConfig);
     }
 
     @Override
-    public SendGroupMsgResponse request(HttpPostRequests requests, SendGroupMsgRequest request) throws IOException {
+    public SetRestartPluginResponse request(HttpPostRequests requests, SetRestartPluginRequest request) throws IOException {
         this.httpPostThreadLocal.set(this.httpPost);
         HttpPost httpPost = this.httpPostThreadLocal.get();
         try {
@@ -36,15 +36,15 @@ public class SendGroupMsgApi extends AbstractApi<SendGroupMsgRequest, AbstractRe
             HttpResponse httpResponse = requests.request(httpPost);
             HttpEntity responseEntity = httpResponse.getEntity();
             String responseString = EntityUtils.toString(responseEntity);
-            SendGroupMsgResponse res = SendGroupMsgResponse.parse(responseString);
+            SetRestartPluginResponse res = SetRestartPluginResponse.parse(responseString);
             return res;
         } finally {
             this.httpPostThreadLocal.remove();
         }
     }
 
-    public SendGroupMsgResponse request(HttpPostRequests requests,int groupId,String message,boolean autoEscape) throws IOException {
-        SendGroupMsgRequest request = new SendGroupMsgRequest(groupId, message, autoEscape);
+    public SetRestartPluginResponse request(HttpPostRequests requests,int delay) throws IOException {
+        SetRestartPluginRequest request = new SetRestartPluginRequest(delay);
         return request(requests, request);
     }
 }

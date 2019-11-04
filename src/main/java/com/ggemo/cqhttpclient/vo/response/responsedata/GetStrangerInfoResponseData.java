@@ -6,7 +6,10 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class SendGroupMsgResponseData implements ResponseData {
-        int messageId;
+public class GetStrangerInfoResponseData implements ResponseData {
+        long userId;
+    String nickname;
+    String sex;
+    int age;
 
 }

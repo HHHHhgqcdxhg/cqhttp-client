@@ -16,24 +16,12 @@ import java.util.List;
  */
 @Data
 @AllArgsConstructor
-public class SendGroupMsgRequest implements Request {
+public class GetFriendListRequest implements Request {
     
-    private static String GROUP_ID = "group_id";
-    int groupId;
-
-    private static String MESSAGE = "message";
-    String message;
-
-    private static String AUTO_ESCAPE = "auto_escape";
-    boolean autoEscape;
-
     
     @Override
     public UrlEncodedFormEntity getEntity() throws UnsupportedEncodingException {
-        List<NameValuePair> kvs = new ArrayList<>(3);
-        kvs.add(new BasicNameValuePair(GROUP_ID, Integer.toString(groupId)));
-        kvs.add(new BasicNameValuePair(MESSAGE, message));
-        kvs.add(new BasicNameValuePair(AUTO_ESCAPE, Boolean.toString(autoEscape)));
+        List<NameValuePair> kvs = new ArrayList<>(0);
         UrlEncodedFormEntity entity = new UrlEncodedFormEntity(kvs, "utf-8");
         return entity;
     }

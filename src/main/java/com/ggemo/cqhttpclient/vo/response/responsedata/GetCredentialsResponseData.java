@@ -6,7 +6,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class SendGroupMsgResponseData implements ResponseData {
-        int messageId;
+public class GetCredentialsResponseData implements ResponseData {
+        String cookies;
+    int csrfToken;
 
 }

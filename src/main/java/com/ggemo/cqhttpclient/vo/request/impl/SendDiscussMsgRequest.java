@@ -16,10 +16,10 @@ import java.util.List;
  */
 @Data
 @AllArgsConstructor
-public class SendGroupMsgRequest implements Request {
+public class SendDiscussMsgRequest implements Request {
     
-    private static String GROUP_ID = "group_id";
-    int groupId;
+    private static String DISCUSS_ID = "discuss_id";
+    int discussId;
 
     private static String MESSAGE = "message";
     String message;
@@ -31,7 +31,7 @@ public class SendGroupMsgRequest implements Request {
     @Override
     public UrlEncodedFormEntity getEntity() throws UnsupportedEncodingException {
         List<NameValuePair> kvs = new ArrayList<>(3);
-        kvs.add(new BasicNameValuePair(GROUP_ID, Integer.toString(groupId)));
+        kvs.add(new BasicNameValuePair(DISCUSS_ID, Integer.toString(discussId)));
         kvs.add(new BasicNameValuePair(MESSAGE, message));
         kvs.add(new BasicNameValuePair(AUTO_ESCAPE, Boolean.toString(autoEscape)));
         UrlEncodedFormEntity entity = new UrlEncodedFormEntity(kvs, "utf-8");
