@@ -18,6 +18,9 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class SetGroupWholeBanApi extends AbstractApi<SetGroupWholeBanRequest, AbstractResponse<SetGroupWholeBanResponseData>> implements Api<SetGroupWholeBanRequest, AbstractResponse<SetGroupWholeBanResponseData>> {
 
     public SetGroupWholeBanApi(String baseUrl, Header header, RequestConfig requestConfig) {
@@ -26,8 +29,7 @@ public class SetGroupWholeBanApi extends AbstractApi<SetGroupWholeBanRequest, Ab
 
     @Override
     public SetGroupWholeBanResponse request(HttpPostRequests requests, SetGroupWholeBanRequest request) throws IOException {
-        this.httpPostThreadLocal.set(this.httpPost);
-        HttpPost httpPost = this.httpPostThreadLocal.get();
+        HttpPost httpPost = this.getHttpPost();
         try {
             UrlEncodedFormEntity entity = request.getEntity();
             if (entity != null) {
@@ -39,7 +41,7 @@ public class SetGroupWholeBanApi extends AbstractApi<SetGroupWholeBanRequest, Ab
             SetGroupWholeBanResponse res = SetGroupWholeBanResponse.parse(responseString);
             return res;
         } finally {
-            this.httpPostThreadLocal.remove();
+            this.giveBackHttpPost();
         }
     }
 

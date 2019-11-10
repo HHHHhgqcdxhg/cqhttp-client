@@ -5,6 +5,9 @@ import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
 import com.ggemo.cqhttpclient.vo.response.RetCode;
 import com.ggemo.cqhttpclient.vo.response.responsedata.SetGroupAnonymousResponseData;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class SetGroupAnonymousResponse extends AbstractResponse<SetGroupAnonymousResponseData> {
     public SetGroupAnonymousResponse(RetCode retCode, SetGroupAnonymousResponseData data) {
         super(retCode, data);

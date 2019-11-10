@@ -5,6 +5,9 @@ import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
 import com.ggemo.cqhttpclient.vo.response.RetCode;
 import com.ggemo.cqhttpclient.vo.response.responsedata.GetStrangerInfoResponseData;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class GetStrangerInfoResponse extends AbstractResponse<GetStrangerInfoResponseData> {
     public GetStrangerInfoResponse(RetCode retCode, GetStrangerInfoResponseData data) {
         super(retCode, data);

@@ -5,6 +5,9 @@ import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
 import com.ggemo.cqhttpclient.vo.response.RetCode;
 import com.ggemo.cqhttpclient.vo.response.responsedata.GetVersionInfoResponseData;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class GetVersionInfoResponse extends AbstractResponse<GetVersionInfoResponseData> {
     public GetVersionInfoResponse(RetCode retCode, GetVersionInfoResponseData data) {
         super(retCode, data);

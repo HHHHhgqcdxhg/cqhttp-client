@@ -18,6 +18,9 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class GetCookiesApi extends AbstractApi<GetCookiesRequest, AbstractResponse<GetCookiesResponseData>> implements Api<GetCookiesRequest, AbstractResponse<GetCookiesResponseData>> {
 
     public GetCookiesApi(String baseUrl, Header header, RequestConfig requestConfig) {
@@ -26,8 +29,7 @@ public class GetCookiesApi extends AbstractApi<GetCookiesRequest, AbstractRespon
 
     @Override
     public GetCookiesResponse request(HttpPostRequests requests, GetCookiesRequest request) throws IOException {
-        this.httpPostThreadLocal.set(this.httpPost);
-        HttpPost httpPost = this.httpPostThreadLocal.get();
+        HttpPost httpPost = this.getHttpPost();
         try {
             UrlEncodedFormEntity entity = request.getEntity();
             if (entity != null) {
@@ -39,7 +41,7 @@ public class GetCookiesApi extends AbstractApi<GetCookiesRequest, AbstractRespon
             GetCookiesResponse res = GetCookiesResponse.parse(responseString);
             return res;
         } finally {
-            this.httpPostThreadLocal.remove();
+            this.giveBackHttpPost();
         }
     }
 

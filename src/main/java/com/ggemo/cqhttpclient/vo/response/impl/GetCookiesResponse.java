@@ -5,6 +5,9 @@ import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
 import com.ggemo.cqhttpclient.vo.response.RetCode;
 import com.ggemo.cqhttpclient.vo.response.responsedata.GetCookiesResponseData;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class GetCookiesResponse extends AbstractResponse<GetCookiesResponseData> {
     public GetCookiesResponse(RetCode retCode, GetCookiesResponseData data) {
         super(retCode, data);

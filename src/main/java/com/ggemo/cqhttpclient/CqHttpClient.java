@@ -161,7 +161,7 @@ public class CqHttpClient {
             baseUrl += "/";
         }
         this.baseUrl = baseUrl;
-        this.requests = new HttpPostRequests();
+        this.requests = HttpPostRequests.getInstance();
     }
 
     public CqHttpClient(String baseUrl, String accessToken) {

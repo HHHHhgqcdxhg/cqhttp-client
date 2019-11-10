@@ -18,6 +18,9 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class GetCsrfTokenApi extends AbstractApi<GetCsrfTokenRequest, AbstractResponse<GetCsrfTokenResponseData>> implements Api<GetCsrfTokenRequest, AbstractResponse<GetCsrfTokenResponseData>> {
 
     public GetCsrfTokenApi(String baseUrl, Header header, RequestConfig requestConfig) {
@@ -26,8 +29,7 @@ public class GetCsrfTokenApi extends AbstractApi<GetCsrfTokenRequest, AbstractRe
 
     @Override
     public GetCsrfTokenResponse request(HttpPostRequests requests, GetCsrfTokenRequest request) throws IOException {
-        this.httpPostThreadLocal.set(this.httpPost);
-        HttpPost httpPost = this.httpPostThreadLocal.get();
+        HttpPost httpPost = this.getHttpPost();
         try {
             UrlEncodedFormEntity entity = request.getEntity();
             if (entity != null) {
@@ -39,7 +41,7 @@ public class GetCsrfTokenApi extends AbstractApi<GetCsrfTokenRequest, AbstractRe
             GetCsrfTokenResponse res = GetCsrfTokenResponse.parse(responseString);
             return res;
         } finally {
-            this.httpPostThreadLocal.remove();
+            this.giveBackHttpPost();
         }
     }
 

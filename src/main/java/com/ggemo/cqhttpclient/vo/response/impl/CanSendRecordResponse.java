@@ -5,6 +5,9 @@ import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
 import com.ggemo.cqhttpclient.vo.response.RetCode;
 import com.ggemo.cqhttpclient.vo.response.responsedata.CanSendRecordResponseData;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class CanSendRecordResponse extends AbstractResponse<CanSendRecordResponseData> {
     public CanSendRecordResponse(RetCode retCode, CanSendRecordResponseData data) {
         super(retCode, data);

@@ -18,6 +18,9 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class SendLikeApi extends AbstractApi<SendLikeRequest, AbstractResponse<SendLikeResponseData>> implements Api<SendLikeRequest, AbstractResponse<SendLikeResponseData>> {
 
     public SendLikeApi(String baseUrl, Header header, RequestConfig requestConfig) {
@@ -26,8 +29,7 @@ public class SendLikeApi extends AbstractApi<SendLikeRequest, AbstractResponse<S
 
     @Override
     public SendLikeResponse request(HttpPostRequests requests, SendLikeRequest request) throws IOException {
-        this.httpPostThreadLocal.set(this.httpPost);
-        HttpPost httpPost = this.httpPostThreadLocal.get();
+        HttpPost httpPost = this.getHttpPost();
         try {
             UrlEncodedFormEntity entity = request.getEntity();
             if (entity != null) {
@@ -39,7 +41,7 @@ public class SendLikeApi extends AbstractApi<SendLikeRequest, AbstractResponse<S
             SendLikeResponse res = SendLikeResponse.parse(responseString);
             return res;
         } finally {
-            this.httpPostThreadLocal.remove();
+            this.giveBackHttpPost();
         }
     }
 

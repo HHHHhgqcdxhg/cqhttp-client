@@ -18,6 +18,9 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class CanSendRecordApi extends AbstractApi<CanSendRecordRequest, AbstractResponse<CanSendRecordResponseData>> implements Api<CanSendRecordRequest, AbstractResponse<CanSendRecordResponseData>> {
 
     public CanSendRecordApi(String baseUrl, Header header, RequestConfig requestConfig) {
@@ -26,8 +29,7 @@ public class CanSendRecordApi extends AbstractApi<CanSendRecordRequest, Abstract
 
     @Override
     public CanSendRecordResponse request(HttpPostRequests requests, CanSendRecordRequest request) throws IOException {
-        this.httpPostThreadLocal.set(this.httpPost);
-        HttpPost httpPost = this.httpPostThreadLocal.get();
+        HttpPost httpPost = this.getHttpPost();
         try {
             UrlEncodedFormEntity entity = request.getEntity();
             if (entity != null) {
@@ -39,7 +41,7 @@ public class CanSendRecordApi extends AbstractApi<CanSendRecordRequest, Abstract
             CanSendRecordResponse res = CanSendRecordResponse.parse(responseString);
             return res;
         } finally {
-            this.httpPostThreadLocal.remove();
+            this.giveBackHttpPost();
         }
     }
 

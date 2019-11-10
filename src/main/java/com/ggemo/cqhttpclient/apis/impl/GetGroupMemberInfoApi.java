@@ -18,6 +18,9 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class GetGroupMemberInfoApi extends AbstractApi<GetGroupMemberInfoRequest, AbstractResponse<GetGroupMemberInfoResponseData>> implements Api<GetGroupMemberInfoRequest, AbstractResponse<GetGroupMemberInfoResponseData>> {
 
     public GetGroupMemberInfoApi(String baseUrl, Header header, RequestConfig requestConfig) {
@@ -26,8 +29,7 @@ public class GetGroupMemberInfoApi extends AbstractApi<GetGroupMemberInfoRequest
 
     @Override
     public GetGroupMemberInfoResponse request(HttpPostRequests requests, GetGroupMemberInfoRequest request) throws IOException {
-        this.httpPostThreadLocal.set(this.httpPost);
-        HttpPost httpPost = this.httpPostThreadLocal.get();
+        HttpPost httpPost = this.getHttpPost();
         try {
             UrlEncodedFormEntity entity = request.getEntity();
             if (entity != null) {
@@ -39,7 +41,7 @@ public class GetGroupMemberInfoApi extends AbstractApi<GetGroupMemberInfoRequest
             GetGroupMemberInfoResponse res = GetGroupMemberInfoResponse.parse(responseString);
             return res;
         } finally {
-            this.httpPostThreadLocal.remove();
+            this.giveBackHttpPost();
         }
     }
 

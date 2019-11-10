@@ -29,8 +29,7 @@ public class CanSendImageApi extends AbstractApi<CanSendImageRequest, AbstractRe
 
     @Override
     public CanSendImageResponse request(HttpPostRequests requests, CanSendImageRequest request) throws IOException {
-        this.httpPostThreadLocal.set(this.httpPost);
-        HttpPost httpPost = this.httpPostThreadLocal.get();
+        HttpPost httpPost = this.getHttpPost();
         try {
             UrlEncodedFormEntity entity = request.getEntity();
             if (entity != null) {
@@ -42,7 +41,7 @@ public class CanSendImageApi extends AbstractApi<CanSendImageRequest, AbstractRe
             CanSendImageResponse res = CanSendImageResponse.parse(responseString);
             return res;
         } finally {
-            this.httpPostThreadLocal.remove();
+            this.giveBackHttpPost();
         }
     }
 

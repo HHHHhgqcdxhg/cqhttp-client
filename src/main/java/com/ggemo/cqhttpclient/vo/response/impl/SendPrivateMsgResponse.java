@@ -5,6 +5,9 @@ import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
 import com.ggemo.cqhttpclient.vo.response.RetCode;
 import com.ggemo.cqhttpclient.vo.response.responsedata.SendPrivateMsgResponseData;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class SendPrivateMsgResponse extends AbstractResponse<SendPrivateMsgResponseData> {
     public SendPrivateMsgResponse(RetCode retCode, SendPrivateMsgResponseData data) {
         super(retCode, data);

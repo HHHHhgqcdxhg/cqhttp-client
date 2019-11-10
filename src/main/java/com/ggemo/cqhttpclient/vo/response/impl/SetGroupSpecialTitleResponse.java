@@ -5,6 +5,9 @@ import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
 import com.ggemo.cqhttpclient.vo.response.RetCode;
 import com.ggemo.cqhttpclient.vo.response.responsedata.SetGroupSpecialTitleResponseData;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class SetGroupSpecialTitleResponse extends AbstractResponse<SetGroupSpecialTitleResponseData> {
     public SetGroupSpecialTitleResponse(RetCode retCode, SetGroupSpecialTitleResponseData data) {
         super(retCode, data);

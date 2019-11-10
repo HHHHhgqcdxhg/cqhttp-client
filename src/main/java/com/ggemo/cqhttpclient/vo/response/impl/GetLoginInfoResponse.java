@@ -5,6 +5,9 @@ import com.ggemo.cqhttpclient.vo.response.AbstractResponse;
 import com.ggemo.cqhttpclient.vo.response.RetCode;
 import com.ggemo.cqhttpclient.vo.response.responsedata.GetLoginInfoResponseData;
 
+/**
+ * @author 清纯的小黄瓜
+ */
 public class GetLoginInfoResponse extends AbstractResponse<GetLoginInfoResponseData> {
     public GetLoginInfoResponse(RetCode retCode, GetLoginInfoResponseData data) {
         super(retCode, data);
