@@ -21,6 +21,7 @@ public enum RetCode {
     RET_CODE_cq_5(-5, "日志功能未启用"),
     RET_CODE_cq_6(-6, "日志优先级错误"),
     RET_CODE_cq_7(-7, "数据入库失败"),
+    RET_CODE_cq_38(-38, "⑧知道什么错误"),
 
     RET_CODE_cq_997(-997, "应用未启用"),
     RET_CODE_cq_998(-998, "应用调用在 auth 声明之外的 Api"),
